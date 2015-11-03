@@ -23,6 +23,7 @@ from movie.views import MovieListView, MovieCreateView, MovieDeleteView, MovieDe
 
 urlpatterns = [
     url(r'^movie_list/', MovieListView.as_view(), name="movie_list"),
+    url(r'^api/', include('api_framework.urls')),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^movie/$', api_movie_list_create, name="create_movie"),
     url(r'^movie/detail/(?P<pk>\d+)/$',api_movie_detail, name="delete_movie")

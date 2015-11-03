@@ -23,3 +23,4 @@ def api_movie_detail(request, pk,):
     movie = Movie.objects.get(id=pk)
     serialize_movie = json.dumps({'id': movie.id, 'title': movie.title})
     return HttpResponse(serialize_movie, content_type='application/json')
+
