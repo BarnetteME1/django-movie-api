@@ -13,16 +13,17 @@ Including another URLconf
     1. Add an import:  from blog import urls as blog_urls
     2. Add a URL to urlpatterns:  url(r'^blog/', include(blog_urls))
 """
+
 from django.conf.urls import include, url
 from django.contrib import admin
+from api.api_view import api_movie_list_create, api_movie_detail
 
 from movie.views import MovieListView, MovieCreateView, MovieDeleteView, MovieDetailView
+
 
 urlpatterns = [
     url(r'^movie_list/', MovieListView.as_view(), name="movie_list"),
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^create_movie/', MovieCreateView.as_view(), name="create_movie"),
-    url(r'^delete_movie/(?P<pk>\d+)/',MovieDeleteView.as_view(), name="delete_movie"),
-    url(r'^movie_detail/(?P<pk>\d+)/',MovieDetailView.as_view(), name="movie_detail")
-
+    url(r'^movie/$', api_movie_list_create, name="create_movie"),
+    url(r'^movie/detail/(?P<pk>\d+)/$',api_movie_detail, name="delete_movie")
 ]
