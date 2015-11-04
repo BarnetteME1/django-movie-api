@@ -17,12 +17,14 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 from api.api_view import api_movie_list_create, api_movie_detail
+from rest_framework.authtoken import views
 
 from movie.views import MovieListView, MovieCreateView, MovieDeleteView, MovieDetailView
 
 
 urlpatterns = [
     url(r'^movie_list/', MovieListView.as_view(), name="movie_list"),
+    url(r'^api-token-auth/', views.obtain_auth_token),
     url(r'^api/', include('api_framework.urls')),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^movie/$', api_movie_list_create, name="create_movie"),
